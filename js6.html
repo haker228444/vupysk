@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  rel="stylesheet" href="css/comeback.css" />
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<style>
+    body{
+background-image: url(fon.jfif);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+</style>
+<body>
+    <div class="content">
+<canvas id="gameCanvas" width="600" height="250"></canvas>
+
+
+    <script>
+ // Створення полотна
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+// document.body.appendChild(canvas);
+// canvas.width = 600;
+// canvas.height = 250;
+
+// Завантаження зображень
+var dinoImg = new Image();
+dinoImg.src = "dino.jpg";
+
+var cactusImg = new Image();
+cactusImg.src = "cactus.png";
+
+// Параметри динозавра
+var dino = {
+  x: 50,
+  y: 135,
+  width: 30,
+  height: 40,
+  isJumping: false,
+  jumpSpeed: 8,
+  speed: 3
+};
+
+// Параметри перешкоди (кактуса)
+var cactus = {
+  x: 600,
+  y: 145,
+  width: 20,
+  height: 25
+};
+
+// Оновлення положення динозавра
+function updateDino() {
+  if (dino.isJumping) {
+    dino.y -= dino.jumpSpeed;
+    dino.jumpSpeed -= 0.5;
+    if (dino.y >= 135) {
+      dino.y = 135;
+      dino.isJumping = false;
+      dino.jumpSpeed = 8;
+    }
+  }
+}
+
+// Оновлення положення перешкоди
+function updateCactus() {
+  cactus.x -= dino.speed;
+  if (cactus.x + cactus.width < 0) {
+    cactus.x = 600;
+  }
+}
+
+// Перевірка на зіткнення з перешкодою
+function checkCollision() {
+  if (
+    dino.x < cactus.x + cactus.width &&
+    dino.x + dino.width > cactus.x &&
+    dino.y < cactus.y + cactus.height &&
+    dino.y + dino.height > cactus.y
+  ) {
+    gameOver();
+  }
+}
+
+// Код для керування динозавром
+document.addEventListener("keydown", function(event) {
+  if (event.keyCode === 32) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (!dino.isJumping) {
+        dino.isJumping = true;
+    }
+}
+});
+
+// Кінець гри
+function gameOver() {
+  clearInterval(interval);
+  alert("Гра закінчена!");
+  dino = {
+        ...dino,
+        x: 50,
+        y: 135,
+    };
+    cactus = {
+        ...cactus,
+        x: 600,
+        y: 145,
+    }
+    interval = setInterval(gameLoop, 10);
+}
+
+// Основний цикл гри
+function gameLoop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  updateDino();
+  updateCactus();
+  checkCollision();
+
+  // Відображення динозавра
+  ctx.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
+
+  // Відображення перешкоди
+  ctx.drawImage(cactusImg, cactus.x, cactus.y, cactus.width, cactus.height);
+}
+
+// Запуск гри
+var interval = setInterval(gameLoop, 10);
+
+</script>
+    </div>
+    <a href="index.html"><button class="custom-btn btn-15" style="font-size: 15px;">Повернутися на головну сторінку</button></a>
+</body>
+</html>

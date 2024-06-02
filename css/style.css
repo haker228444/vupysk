@@ -1,0 +1,139 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #00c6ff, #0072ff, #ff416c, #ff4b2b);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #fff;
+    text-align: center;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bgrvideo video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+header {
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.7);
+    animation: headerFadeIn 2s ease-out;
+}
+
+@keyframes headerFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+header h1 {
+    margin: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    animation: textPopUp 2s ease-out;
+}
+
+@keyframes textPopUp {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#menu {
+    margin: 20px 0;
+    animation: menuFadeIn 3s ease-out;
+}
+
+@keyframes menuFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#menu h2 {
+    margin-bottom: 10px;
+    color: #ffcc00;
+    animation: textPopUp 2s ease-out;
+}
+
+#javascript {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#javascript h3 {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.custom-btn {
+    background: #4400ff;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: buttonPulse 1.5s infinite;
+}
+
+@keyframes buttonPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.custom-btn:hover {
+    background: #ff8800;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+#content {
+    padding: 20px;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+    animation: contentFadeIn 4s ease-out;
+}
+
+@keyframes contentFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#content h2 {
+    color: #ffcc00;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.contacts a img {
+    margin: 10px;
+    transition: transform 0.3s;
+}
+
+.contacts a img:hover {
+    transform: scale(1.2);
+}
